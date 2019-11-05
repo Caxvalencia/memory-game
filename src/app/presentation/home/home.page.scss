@@ -1,5 +1,5 @@
 .play-button {
-  &__animation {
+  &--animation {
     animation-name: anim__slide-in, anim__pulse;
     animation-timing-function: ease-out, ease-in;
     animation-duration: 1s, 1s;
