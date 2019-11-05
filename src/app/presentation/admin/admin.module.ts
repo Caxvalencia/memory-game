@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AdminRoutingModule } from './admin.routing.module';
-import { DashboardPage } from './dashboard/dashboard.page';
 
 @NgModule({
   imports: [
@@ -13,6 +12,6 @@ import { DashboardPage } from './dashboard/dashboard.page';
     FormsModule,
     AdminRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: []
 })
 export class AdminModule { }
