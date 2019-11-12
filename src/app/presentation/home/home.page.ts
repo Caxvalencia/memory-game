@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SessionService } from '@shared/services/session.service';
+import { SessionService } from '@shared/services/session/session.service';
 
 @Component({
   selector: 'app-home',

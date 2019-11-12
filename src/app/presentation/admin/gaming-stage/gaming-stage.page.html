@@ -1,8 +1,10 @@
 <ion-content color="primary">
   <ion-grid>
-    <ion-row *ngFor="let i of [1,2,3,4]">
-      <ion-col *ngFor="let i of [1,2,3,4]">
-        <app-card></app-card>
+    <ion-row>
+      <ion-col size="3" *ngFor="let card of cards">
+        <app-card [isFlip]="card.isFlip" [isDisabled]="card.isDisabled" (click)="selectCard(card)">
+          {{ card.value }}
+        </app-card>
       </ion-col>
     </ion-row>
   </ion-grid>

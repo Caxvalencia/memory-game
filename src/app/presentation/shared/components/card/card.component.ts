@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -7,15 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  isFlip: boolean;
+  @Input() public isFlip: boolean;
+  @Input() public isDisabled: boolean;
 
   constructor() { }
 
   ngOnInit() {
     this.isFlip = false;
+    this.isDisabled = false;
   }
 
   toggleCard() {
+    if (this.isDisabled) {
+      return;
+    }
+
     this.isFlip = !this.isFlip;
   }
 }
