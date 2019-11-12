@@ -17,6 +17,8 @@ export class GamingStagePage implements OnInit {
 
   public finished = false;
 
+  public nickname = '';
+
   protected selectedCards: CardModel[] = [];
 
   constructor(
@@ -30,6 +32,7 @@ export class GamingStagePage implements OnInit {
   }
 
   async restartGame() {
+    this.getNickname();
     const cardList = await this.cardService.getCardList().toPromise();
 
     this.cards = await this.gamingStageService.prepare(cardList);
@@ -61,6 +64,10 @@ export class GamingStagePage implements OnInit {
 
     this.selectedCards = [card];
     this.tries++;
+  }
+
+  async getNickname() {
+    this.nickname = await this.sessionService.getNickname();
   }
 
   private enableSelectedCards() {
