@@ -45,8 +45,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.sessionService.setNickname(data.nickname)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(response => {
-        console.log(response);
-
         if (response) {
           this.router.navigate(['admin']);
         }
