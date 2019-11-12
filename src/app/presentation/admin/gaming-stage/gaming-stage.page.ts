@@ -12,6 +12,8 @@ export class GamingStagePage implements OnInit {
 
   public cards: CardModel[] = [];
 
+  public tries = 0;
+
   protected selectedCards: CardModel[] = [];
 
   constructor(
@@ -25,28 +27,37 @@ export class GamingStagePage implements OnInit {
   }
 
   selectCard(card: CardModel) {
+    console.log(card);
+
+    if (card.isDisabled) {
+      return;
+    }
+
     if (this.selectedCards.length < 2) {
+      card.disable();
       this.selectedCards.push(card);
 
       return;
     }
 
-    if (this.areCardEquals()) {
-      this.disableSelectedCards();
+    if (!this.areCardEquals()) {
+      this.enableSelectedCards();
+      this.flipSelectedCards();
     }
 
-    this.flipSelectedCards();
-    this.selectedCards = [];
+    card.disable();
+    this.selectedCards = [card];
+    this.tries++;
   }
 
-  private disableSelectedCards() {
-    this.selectedCards[0].disable();
-    this.selectedCards[1].disable();
+  private enableSelectedCards() {
+    this.selectedCards[0].enable();
+    this.selectedCards[1].enable();
   }
 
   private flipSelectedCards() {
-    this.selectedCards[0].isFlip = true;
-    this.selectedCards[1].isFlip = true;
+    this.selectedCards[0].isFlip = false;
+    this.selectedCards[1].isFlip = false;
   }
 
   private areCardEquals() {
