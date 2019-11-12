@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardModel } from '@data/repositories/cards/card.model';
 import { CardService } from '@shared/services/card.service';
 import { GamingStageService } from '@shared/services/gaming-stage/gaming-stage.service';
+import { SessionService } from '../../shared/services/session/session.service';
 
 @Component({
   selector: 'app-gaming-stage',
@@ -19,6 +20,7 @@ export class GamingStagePage implements OnInit {
   protected selectedCards: CardModel[] = [];
 
   constructor(
+    public sessionService: SessionService,
     private cardService: CardService,
     private gamingStageService: GamingStageService
   ) { }
