@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateGuard } from '@shared/guards/can-activate.guard';
+import { HasNicknameGuard } from '@app/presentation/shared/guards/has-nickname.guard';
 import { GamingStagePage } from './gaming-stage/gaming-stage.page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/admin/gaming-stage',
+    redirectTo: 'gaming-stage',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/admin/gaming-stage',
+    redirectTo: 'gaming-stage',
     pathMatch: 'full'
   },
   {
     path: 'gaming-stage',
     component: GamingStagePage,
-    canActivate: [CanActivateGuard]
+    canActivate: [HasNicknameGuard]
   },
 ];
 
