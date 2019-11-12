@@ -24,8 +24,16 @@ export class GamingStagePage implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.restartGame();
+  }
+
+  async restartGame() {
     const cardList = await this.cardService.getCardList().toPromise();
+
     this.cards = await this.gamingStageService.prepare(cardList);
+    this.tries = 0;
+    this.finished = false;
+    this.selectedCards = [];
   }
 
   selectCard(card: CardModel) {
