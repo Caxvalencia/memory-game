@@ -30,7 +30,7 @@ export class RomanCardRepository implements CardRepository {
     return cardList;
   }
 
-  private getRomanNumber(index) {
+  private getRomanNumber(index: number) {
     return this.romans[index];
   }
 }
