@@ -4,7 +4,7 @@ export const NICKNAME_REPOSITORY = 'NicknameRepository';
 
 export interface NicknameRepository {
 
-  getNickname(): Observable<any>;
+  getNickname(): Promise<string>;
 
   setNickname(nickname: string): Observable<any>;
 }

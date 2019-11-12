@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HasNicknameGuard } from '@app/presentation/shared/guards/has-nickname.guard';
 import { GamingStagePage } from './gaming-stage/gaming-stage.page';
 
 const routes: Routes = [
@@ -16,8 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'gaming-stage',
-    component: GamingStagePage,
-    canActivate: [HasNicknameGuard]
+    component: GamingStagePage
   },
 ];
 

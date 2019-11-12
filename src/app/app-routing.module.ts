@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { HasNicknameGuard } from './presentation/shared/guards/has-nickname.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -9,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./presentation/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./presentation/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [HasNicknameGuard]
   },
 ];
 

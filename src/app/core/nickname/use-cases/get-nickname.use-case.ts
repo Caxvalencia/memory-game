@@ -8,7 +8,7 @@ export class GetNicknameUseCase {
 
   constructor(@Inject(NICKNAME_REPOSITORY) protected nicknameRepository: NicknameRepository) { }
 
-  execute(): Observable<any> {
+  execute(): Promise<string> {
     return this.nicknameRepository.getNickname();
   }
 }

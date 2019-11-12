@@ -19,7 +19,7 @@ export class SessionService {
     return this.setNicknameUseCase.execute(nickname);
   }
 
-  getNickname(): Observable<any> {
+  getNickname(): Promise<string> {
     return this.getNicknameUseCase.execute();
   }
 }

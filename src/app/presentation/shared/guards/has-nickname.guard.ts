@@ -17,8 +17,7 @@ export class HasNicknameGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean | UrlTree> {
-
-    const hasNickname: boolean = await this.sessionService.getNickname().toPromise();
+    const hasNickname = await this.sessionService.getNickname();
 
     console.log(hasNickname);
 

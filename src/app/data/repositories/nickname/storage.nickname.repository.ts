@@ -9,8 +9,8 @@ export class StorageNicknameRepository implements NicknameRepository {
 
   constructor(private storage: Storage) { }
 
-  getNickname(): Observable<any> {
-    return from(this.storage.get(NICKNAME_KEY));
+  getNickname(): Promise<string> {
+    return this.storage.get(NICKNAME_KEY);
   }
 
   setNickname(nickname: string): Observable<any> {

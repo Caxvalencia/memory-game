@@ -4,8 +4,8 @@ import { NicknameRepository } from '@app/core/nickname/repositories/nickname.rep
 
 export class FakeNicknameRepository implements NicknameRepository {
 
-  getNickname(): Observable<any> {
-    return of('Con centramesta');
+  getNickname(): Promise<string> {
+    return of('Con centramesta').toPromise();
   }
 
   setNickname(nickname: string): Observable<any> {
