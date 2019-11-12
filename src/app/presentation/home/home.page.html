@@ -5,11 +5,31 @@
         <div class="ion-text-center">
           <h1>Memory Game</h1>
 
-          <ion-button [routerLink]="['/gaming-stage']" class="play-button--animation" color="primary"
-                      size="large" expand="expand" shape="round">
-            Start Game
-            <ion-icon name="play" slot="end"></ion-icon>
-          </ion-button>
+          <form [formGroup]="homeForm" (ngSubmit)="onSubmit(homeForm.value)" novalidate>
+            <ion-item>
+              <ion-input formControlName="nickname" type="text" class="ion-text-center"
+                         autofocus="true" color="primary" placeholder="Nickname">
+              </ion-input>
+            </ion-item>
+
+            <div *ngIf="nickname.invalid && (nickname.dirty || nickname.touched)">
+              <ion-label color="danger" *ngIf="nickname.errors.required">
+                Nickname is required.
+              </ion-label>
+
+              <ion-label color="danger" *ngIf="nickname.errors.maxlength">
+                The Nickname may not be greater than 20 characters.
+              </ion-label>
+            </div>
+
+            <p> </p>
+
+            <ion-button type="submit" class="play-button--animation" color="primary" size="large"
+                        expand="expand" shape="round" [disabled]="!homeForm.valid">
+              Start Game
+              <ion-icon name="play" slot="end"></ion-icon>
+            </ion-button>
+          </form>
         </div>
       </ion-col>
     </ion-row>
