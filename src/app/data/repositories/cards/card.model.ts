@@ -10,7 +10,7 @@ export class CardModel {
 
     private value: any;
 
-    constructor(id: number, value: any, isFlip: boolean = false, isDisabled: boolean = false) {
+    constructor(id: number, value: any, isFlip = false, isDisabled = false) {
         this.id = id;
         this.isFlip = isFlip;
         this.value = value;
