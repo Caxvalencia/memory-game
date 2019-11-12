@@ -11,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GetCardListUseCase } from './core/cards/use-cases/get-card-list.use-case';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,8 @@ import { AppComponent } from './app.component';
     // Core use cases
     GetNicknameUseCase,
     SetNicknameUseCase,
+
+    GetCardListUseCase,
   ],
   bootstrap: [AppComponent]
 })
