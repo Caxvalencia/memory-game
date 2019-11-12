@@ -14,6 +14,8 @@ export class GamingStagePage implements OnInit {
 
   public tries = 0;
 
+  public finished = false;
+
   protected selectedCards: CardModel[] = [];
 
   constructor(
@@ -33,8 +35,10 @@ export class GamingStagePage implements OnInit {
       return;
     }
 
+    card.disable();
+    this.validateFinished();
+
     if (this.selectedCards.length < 2) {
-      card.disable();
       this.selectedCards.push(card);
 
       return;
@@ -45,7 +49,6 @@ export class GamingStagePage implements OnInit {
       this.flipSelectedCards();
     }
 
-    card.disable();
     this.selectedCards = [card];
     this.tries++;
   }
@@ -62,5 +65,11 @@ export class GamingStagePage implements OnInit {
 
   private areCardEquals() {
     return this.selectedCards[0].getId() === this.selectedCards[1].getId();
+  }
+
+  private validateFinished() {
+    const hasEnable = this.cards.filter(card => !card.isDisabled);
+
+    this.finished = hasEnable.length === 0;
   }
 }
