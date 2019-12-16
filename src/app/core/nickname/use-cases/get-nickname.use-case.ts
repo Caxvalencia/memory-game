@@ -1,12 +1,13 @@
-import { Observable } from 'rxjs';
+import { NicknameRepository } from '../repositories/nickname.repository';
+import { UseCase } from '../../base/use-case';
 
-import { Inject } from '@angular/core';
+export class GetNicknameUseCase implements UseCase<void, string> {
 
-import { NICKNAME_REPOSITORY, NicknameRepository } from '../repositories/nickname.repository';
+  protected nicknameRepository: NicknameRepository;
 
-export class GetNicknameUseCase {
-
-  constructor(@Inject(NICKNAME_REPOSITORY) protected nicknameRepository: NicknameRepository) { }
+  constructor(nicknameRepository: NicknameRepository) {
+    this.nicknameRepository = nicknameRepository;
+  }
 
   execute(): Promise<string> {
     return this.nicknameRepository.getNickname();

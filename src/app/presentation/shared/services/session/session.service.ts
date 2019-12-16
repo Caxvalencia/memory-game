@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import {
+  NICKNAME_REPOSITORY, NicknameRepository
+} from '@core/nickname/repositories/nickname.repository';
 import { GetNicknameUseCase } from '@core/nickname/use-cases/get-nickname.use-case';
 import { SetNicknameUseCase } from '@core/nickname/use-cases/set-nickname.use-case';
 
@@ -9,10 +12,14 @@ import { SetNicknameUseCase } from '@core/nickname/use-cases/set-nickname.use-ca
 })
 export class SessionService {
 
+  private getNicknameUseCase: GetNicknameUseCase;
+  private setNicknameUseCase: SetNicknameUseCase;
+
   constructor(
-    protected getNicknameUseCase: GetNicknameUseCase,
-    protected setNicknameUseCase: SetNicknameUseCase
+    @Inject(NICKNAME_REPOSITORY) protected nicknameRepository: NicknameRepository
   ) {
+    this.getNicknameUseCase = new GetNicknameUseCase(nicknameRepository);
+    this.setNicknameUseCase = new SetNicknameUseCase(nicknameRepository);
   }
 
   setNickname(nickname: string): Observable<any> {

@@ -28,10 +28,6 @@ import { GetCardListUseCase } from './core/cards/use-cases/get-card-list.use-cas
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SERVICE_PROVIDERS,
 
-    // Core use cases
-    GetNicknameUseCase,
-    SetNicknameUseCase,
-
     GetCardListUseCase,
   ],
   bootstrap: [AppComponent]
