@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CardModel } from '@data/repositories/cards/card.model';
 import { CardService } from '@shared/services/card.service';
 import { GamingStageService } from '@shared/services/gaming-stage/gaming-stage.service';
 import { SessionService } from '@shared/services/session/session.service';
+import { TimerComponent } from '../../shared/components/timer/timer.component';
 
 @Component({
   selector: 'app-gaming-stage',
@@ -10,6 +11,9 @@ import { SessionService } from '@shared/services/session/session.service';
   styleUrls: ['./gaming-stage.page.scss'],
 })
 export class GamingStagePage implements OnInit {
+
+  @ViewChild('timerComponent', { static: true })
+  timerComponent: TimerComponent;
 
   public cards: CardModel[] = [];
 
@@ -27,12 +31,14 @@ export class GamingStagePage implements OnInit {
     private gamingStageService: GamingStageService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.restartGame();
   }
 
   async restartGame() {
     this.getNickname();
+    this.timerComponent.startFrom(0);
+
     const cardList = await this.cardService.getCardList().toPromise();
 
     this.cards = await this.gamingStageService.prepare(cardList);
@@ -68,6 +74,16 @@ export class GamingStagePage implements OnInit {
 
   async getNickname() {
     this.nickname = await this.sessionService.getNickname();
+  }
+
+  public togglePlayTimer() {
+    if (this.timerComponent.isStopped) {
+      this.timerComponent.start();
+
+      return;
+    }
+
+    this.timerComponent.stop();
   }
 
   private enableSelectedCards() {
