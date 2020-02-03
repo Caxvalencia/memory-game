@@ -9,32 +9,22 @@ export class TimerComponent implements OnDestroy {
 
   public seconds = 0;
 
-  public get isStopped() { return this.shouldStop; }
+  public isStopped: boolean;
 
   private interval: any;
-
-  private shouldStop: boolean;
 
   ngOnDestroy() {
     clearInterval(this.interval);
   }
 
   public start() {
-    this.shouldStop = false;
-
-    this.interval = setInterval(() => {
-      if (this.shouldStop) {
-        clearInterval(this.interval);
-
-        return;
-      }
-
-      this.seconds++;
-    }, 1000);
+    this.isStopped = false;
+    this.interval = setInterval(() => this.seconds++, 1000);
   }
 
   public stop() {
-    this.shouldStop = true;
+    this.isStopped = true;
+    clearInterval(this.interval);
   }
 
   public startFrom(seconds: number) {
