@@ -38,7 +38,10 @@ export class GamingStagePage implements OnInit {
 
   async restartGame() {
     this.getNickname();
-    this.timerComponent.startFrom(0);
+
+    if (this.timerComponent?.startFrom) {
+      this.timerComponent.startFrom(0);
+    }
 
     const cardList = await firstValueFrom(this.cardService.getCardList());
 
