@@ -1,20 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
 
-import { CardComponent } from './components/card/card.component';
-import { TimerComponent } from './components/timer/timer.component';
-import { MinuteSecondsPipe } from './pipes/minute-seconds.pipe';
+import { CardComponent } from "./components/card/card.component";
+import { TimerComponent } from "./components/timer/timer.component";
+import { MinuteSecondsPipe } from "./pipes/minute-seconds.pipe";
 
-const components = [
-  CardComponent,
-  TimerComponent,
-  MinuteSecondsPipe
-];
+const components = [CardComponent, TimerComponent, MinuteSecondsPipe];
 
 @NgModule({
   imports: [CommonModule],
   declarations: [...components],
-  exports: [components],
-  entryComponents: []
+  exports: [...components],
 })
-export class SharedModule { }
+export class SharedModule {}

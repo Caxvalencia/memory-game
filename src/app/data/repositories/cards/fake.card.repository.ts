@@ -1,10 +1,11 @@
-import { Observable, of } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 
-import { CardRepository } from '@core/cards/repositories/card.repository';
-import { CardEntity } from '@core/cards/entities/card.entity';
+import { CardEntity } from "@core/cards/entities/card.entity";
+import { CardRepository } from "@core/cards/repositories/card.repository";
 
+@Injectable({ providedIn: "root" })
 export class FakeCardRepository implements CardRepository {
-
   getCards(): Observable<CardEntity[]> {
     return of(this.factoryCards(8));
   }
@@ -15,7 +16,7 @@ export class FakeCardRepository implements CardRepository {
     for (let index = 0; index < num; index++) {
       const card = {
         id: Math.floor(Math.random() * 100000),
-        value: index + 1
+        value: index + 1,
       } as CardEntity;
 
       cardList.push(card);

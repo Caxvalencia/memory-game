@@ -1,18 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CardModel } from '@data/repositories/cards/card.model';
-import { CardService } from '@shared/services/card.service';
-import { GamingStageService } from '@shared/services/gaming-stage/gaming-stage.service';
-import { SessionService } from '@shared/services/session/session.service';
-import { TimerComponent } from '../../shared/components/timer/timer.component';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { CardModel } from "@data/repositories/cards/card.model";
+import { CardService } from "@shared/services/card.service";
+import { GamingStageService } from "@shared/services/gaming-stage/gaming-stage.service";
+import { SessionService } from "@shared/services/session/session.service";
+import { firstValueFrom } from "rxjs";
+import { TimerComponent } from "../../shared/components/timer/timer.component";
 
 @Component({
-  selector: 'app-gaming-stage',
-  templateUrl: './gaming-stage.page.html',
-  styleUrls: ['./gaming-stage.page.scss'],
+  selector: "app-gaming-stage",
+  templateUrl: "./gaming-stage.page.html",
+  styleUrls: ["./gaming-stage.page.scss"],
+  standalone: false,
 })
 export class GamingStagePage implements OnInit {
-
-  @ViewChild('timerComponent', { static: true })
+  @ViewChild("timerComponent", { static: true })
   timerComponent: TimerComponent;
 
   public cards: CardModel[] = [];
@@ -21,15 +22,15 @@ export class GamingStagePage implements OnInit {
 
   public finished = false;
 
-  public nickname = '';
+  public nickname = "";
 
   protected selectedCards: CardModel[] = [];
 
   constructor(
     public sessionService: SessionService,
     private cardService: CardService,
-    private gamingStageService: GamingStageService
-  ) { }
+    private gamingStageService: GamingStageService,
+  ) {}
 
   ngOnInit() {
     this.restartGame();
@@ -39,7 +40,7 @@ export class GamingStagePage implements OnInit {
     this.getNickname();
     this.timerComponent.startFrom(0);
 
-    const cardList = await this.cardService.getCardList().toPromise();
+    const cardList = await firstValueFrom(this.cardService.getCardList());
 
     this.cards = await this.gamingStageService.prepare(cardList);
     this.tries = 0;
@@ -101,7 +102,7 @@ export class GamingStagePage implements OnInit {
   }
 
   private validateFinished() {
-    const hasEnable = this.cards.filter(card => !card.isDisabled);
+    const hasEnable = this.cards.filter((card) => !card.isDisabled);
 
     this.finished = hasEnable.length === 0;
   }

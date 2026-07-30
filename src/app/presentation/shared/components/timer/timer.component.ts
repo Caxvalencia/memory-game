@@ -1,12 +1,12 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from "@angular/core";
 
 @Component({
-  selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss'],
+  selector: "app-timer",
+  templateUrl: "./timer.component.html",
+  styleUrls: ["./timer.component.scss"],
+  standalone: false,
 })
 export class TimerComponent implements OnDestroy {
-
   public seconds = 0;
 
   public isStopped: boolean;

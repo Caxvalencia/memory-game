@@ -1,19 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  selector: "app-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.scss"],
+  standalone: false,
 })
 export class CardComponent implements OnInit {
-
   @Input() public isFlip: boolean;
   @Output() isFlipChange = new EventEmitter<boolean>();
 
   @Input() public isDisabled: boolean;
   @Output() isDisabledChange = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.isFlip = false;
