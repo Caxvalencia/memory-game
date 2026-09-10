@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
-import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
-import { StatusBar } from "@awesome-cordova-plugins/status-bar/ngx";
 import { SERVICE_PROVIDERS } from "@config/service-providers/service-provider.config";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { IonicStorageModule } from "@ionic/storage-angular";
@@ -20,8 +18,6 @@ import { GetCardListUseCase } from "./core/cards/use-cases/get-card-list.use-cas
     AppRoutingModule,
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SERVICE_PROVIDERS,
 

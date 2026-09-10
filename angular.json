@@ -78,9 +78,6 @@
           "configurations": {
             "production": {
               "buildTarget": "app:build:production"
-            },
-            "ci": {
-              "progress": false
             }
           }
         },
@@ -121,8 +118,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
   }
 }

@@ -1,18 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { TestBed, waitForAsync } from "@angular/core/testing";
-
-import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
-import { StatusBar } from "@awesome-cordova-plugins/status-bar/ngx";
 import { Platform } from "@ionic/angular";
 
 import { AppComponent } from "./app.component";
 
 describe("AppComponent", () => {
-  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+  let platformReadySpy: Promise<void>, platformSpy: jasmine.SpyObj<Platform>;
 
   beforeEach(waitForAsync(() => {
-    statusBarSpy = jasmine.createSpyObj("StatusBar", ["styleDefault"]);
-    splashScreenSpy = jasmine.createSpyObj("SplashScreen", ["hide"]);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj("Platform", { ready: platformReadySpy });
 
@@ -20,8 +15,6 @@ describe("AppComponent", () => {
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: StatusBar, useValue: statusBarSpy },
-        { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
       ],
     }).compileComponents();
@@ -36,10 +29,5 @@ describe("AppComponent", () => {
   it("should initialize the app", async () => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
-    await platformReadySpy;
-    expect(statusBarSpy.styleDefault).toHaveBeenCalled();
-    expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
-
-  // TODO: add more tests!
 });
